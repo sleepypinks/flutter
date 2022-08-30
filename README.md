@@ -1,24 +1,27 @@
-# hello_world
+# Studio - Flutter
 
-A new Flutter project created with https://flutlab.io
+## Introduction
+Today, you will be introduced to mobile app design through building a simple bakery list app! We will leverage a powerful cross-platform framework called Flutter to build an app that can run on the web, your phone, or a native program on Windows, macOS, or Linux.
 
-## Getting Started
+### Introduction Activity
+Discuss with your group:
+- As a UX designer, what differences have you seen in mobile app designs versus web designs?
+- What are some design aspects you would consider before designing a mobile app for a client?
 
-This project is a starting point for a Flutter application.
+## Environment Setup
+We will be using flutlab.io, an online Flutter IDE. Using this online environment should help alleviate common issues students may encounter while installing a Flutter development environment locally.
 
-A few resources to get you started if this is your first Flutter project:
+* Visit flutlab.io, and sign in with your Brown Google account.
+* Once you sign in, you’ll be taken to your personal dashboard.
+* Click the `+ Project` button in the top right corner to create a new project.
+* Under *Choose codebase*, select **Code Base #1: Stateless Hello World**
+* For *Project name*, name your project whatever you’d like - perhaps something like `bakery`.
+* Leave *Package* blank
+* Your project will show up in the dashboard. Click it to access the codebase and the online IDE.
 
-- https://flutter.dev/docs/get-started/codelab
-- https://flutter.dev/docs/cookbook
+You should now see something like this:
 
-For help getting started with Flutter, view our
-https://flutter.dev/docs, which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![](https://i.imgur.com/FLnECDW.png)
 
-## Getting Started: FlutLab - Flutter Online IDE
-
-- How to use FlutLab? Please, view our https://flutlab.io/docs
-- Discover a marketplace of ready-to-use Flutter projects https://flutlab.io/widgetbay
-- Join the discussion and conversation on https://flutlab.io/residents
-
-If you have some questions regarding FlutLab, you can ask on https://flutlab.io/faq
+## Using Flutlab
+For this studio, we will 
