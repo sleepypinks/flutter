@@ -1,65 +1,65 @@
-final getData = [
+final menuItems = [
   {
-    "title": "Lemon cheesecake",
-    "price": 3.99,
+    "name": "Lemon Cheesecake",
+    "price": "3.00",
     "description": "A cheesecake made with fresh lemon juice and milk",
-    "image":
-        "https://raw.githubusercontent.com/filippella/Dagger-Rx-Database-MVP/master/cakes/lemoncheese_cake.jpg"
+    "imageUrl":
+        "https://tmbidigitalassetsazure.blob.core.windows.net/rms3-prod/attachments/37/1200x1200/Lemon-Dream-Cheesecake_EXPS_DIYD20_93312_B07_28_7b.jpg"
   },
   {
-    "title": "Victoria sponge",
-    "price": 2.99,
-    "description": "A light sponge cake made with eggs and sugar",
-    "image":
-        "https://raw.githubusercontent.com/filippella/Dagger-Rx-Database-MVP/master/cakes/victoria_sponge.jpg"
+    "name": "✨Macaron✨",
+    "price": "2.99",
+    "description": "A light and fluffy french meringue dessert",
+    "imageUrl":
+        "https://partylicious.net/wp-content/uploads/2020/04/stack-macarons-pink-white-680-2-min.jpg"
   },
   {
-    "title": "Carrot cake",
-    "price": 1.99,
+    "name": "Carrot Cake",
+    "price": "1.99",
     "description": "A carrot cake made with fresh carrot",
-    "image":
-        "https://raw.githubusercontent.com/filippella/Dagger-Rx-Database-MVP/master/cakes/carrot_cake.jpg"
+    "imageUrl":
+        "https://www.glorioustreats.com/wp-content/uploads/2014/05/best-carrot-cake-recipe-square.jpeg"
   },
   {
-    "title": "Banana cake",
-    "price": 2.99,
+    "name": "Banana Cake",
+    "price": "4.99",
     "description": "A tasteful and nutty banana cake",
-    "image":
-        "https://raw.githubusercontent.com/filippella/Dagger-Rx-Database-MVP/master/cakes/banana_cake.jpg"
+    "imageUrl":
+        "https://www.seasonsandsuppers.ca/wp-content/uploads/2020/02/2-banana-bread-1200.jpg"
   },
   {
-    "title": "Birthday cake",
-    "price": 3.99,
-    "description": "A vanilla cake with fresh berries",
-    "image":
-        "https://raw.githubusercontent.com/filippella/Dagger-Rx-Database-MVP/master/cakes/birthday_cake.JPG"
+    "name": "Strawberry Shortcake",
+    "price": "2.00",
+    "description": "A fruity and tarty strawberry shortcake",
+    "imageUrl":
+        "https://static01.nyt.com/images/2015/06/05/dining/05STRAWSHORTCAKE/05STRAWSHORTCAKE-superJumbo.jpg"
   },
   {
-    "title": "Avocado cake",
-    "price": 2.99,
+    "name": "Avocado Cake",
+    "price": "1.50",
     "description": "An herbal cake with fresh avocado",
-    "image":
+    "imageUrl":
         "https://raw.githubusercontent.com/filippella/Dagger-Rx-Database-MVP/master/cakes/avocado_cake.jpg"
   },
   {
-    "title": "Chocolate cake",
-    "price": 2.99,
-    "description": "A chocolatey and rick cake",
-    "image":
-        "https://raw.githubusercontent.com/filippella/Dagger-Rx-Database-MVP/master/cakes/chocolate_cake.jpg"
+    "name": "Chocolate Cake",
+    "price": "2.99",
+    "description": "A chocolatey and rich cake",
+    "imageUrl":
+        "https://www.browneyedbaker.com/wp-content/uploads/2021/05/chocolate-cake-15-square.jpg"
   },
   {
-    "title": "Clementine cake",
-    "price": 2.99,
-    "description": "A citrusy cake with fresh clementine",
-    "image":
-        "https://raw.githubusercontent.com/filippella/Dagger-Rx-Database-MVP/master/cakes/clementine_cake.png"
+    "name": "Oatmeal Raisin Cookie",
+    "price": "2.99",
+    "description": "A cookie rich in fiber with a hint of sweetness",
+    "imageUrl":
+        "https://sugarspunrun.com/wp-content/uploads/2022/04/Oatmeal-Raisin-Cookies-1-of-1.jpg"
   },
   {
-    "title": "Fudge cake",
-    "price": 2.99,
-    "description": "A solid and nutty fudge cake",
-    "image":
-        "https://raw.githubusercontent.com/filippella/Dagger-Rx-Database-MVP/master/cakes/fudge_cake.jpg"
+    "name": "Gingerbread Cookies",
+    "price": "3.99",
+    "description": "Festive cookies with a nice twist of spioce",
+    "imageUrl":
+        "https://static.onecms.io/wp-content/uploads/sites/43/2022/05/19/230238-gingerbread-men-cookies-ddmfs-4x3-1.jpg"
   },
 ];
