@@ -39,7 +39,7 @@ final menuItems = [
     "price": "1.50",
     "description": "An herbal cake with fresh avocado",
     "imageUrl":
-        "https://raw.githubusercontent.com/filippella/Dagger-Rx-Database-MVP/master/cakes/avocado_cake.jpg"
+        "https://realfood.tesco.com/media/images/RFO-1400x919-Avocado-lemon-and-poppy-seed-cake-78ac10e7-2fa5-4ba9-a9b7-082ec4afda4f-0-1400x919.jpg"
   },
   {
     "name": "Chocolate Cake",
