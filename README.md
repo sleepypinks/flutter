@@ -61,10 +61,10 @@ Widget build(BuildContext context) {
 }
 ```
 
-Every `Widget` has a `build` method -- it's what is called when the `Widget` is created and rendered in your app. Here, we can see that the `build` method of `MyApp` returns a `MaterialApp` with a `title` of `"Studio - Flutter"`, a simple theme, and a home `Widget`. For us, the `Widget` we assign as the home page of our app is `MyHomePage`, which is defined on line 23.
+Every `Widget` has a `build` method -- it's what is called when the `Widget` is created and rendered in your app. Here, we can see that the `build` method of `MyApp` returns a `MaterialApp` with a `title` of `"Studio - Flutter"`, a simple theme, and a home `Widget`. For us, the `Widget` we assign as the home page of our app is `MyHomePage`, which is defined on line 24.
 
 ### Making changes
-Change the `primarySwatch` color on line 15 from `Colors.blue` to `Colors.brown`, then press the *Hot Reload* button in the top left next to the *Build* button -- it looks like a lightning bolt. Your emulator should update, and you should now see something like this:
+Change the `primarySwatch` color on line 16 from `Colors.blue` to `Colors.brown`, then press the *Hot Reload* button in the top left next to the *Build* button -- it looks like a lightning bolt. Your emulator should update, and you should now see something like this:
 
 ![](https://i.imgur.com/zzU67vTl.png)
 
@@ -75,8 +75,8 @@ Let's also change the title that appears in the brown `AppBar` from `"Studio - F
 #### Adding content to the page
 Our app is a little boring right now... there's no content on the page! Let's add some.
 
-Scroll down to the `build` method of `MyHomePage` on line 23:
-```dart=27
+Scroll down to the `build` method of `MyHomePage` on line 29:
+```dart=28
 @override
 Widget build(BuildContext context) {
     return Scaffold(
@@ -88,7 +88,7 @@ Widget build(BuildContext context) {
 }
 ```
 Let's add a `body` to our `Scaffold` so that we can put content into the page. We'll add a `Text` `Widget` as the only element in the body:
-```dart=27
+```dart=28
 @override
 Widget build(BuildContext context) {
     return Scaffold(
@@ -112,6 +112,7 @@ Our page has content now, but it doesn't look too great. Let's say we want to ce
 Well, we can use layout Widgets! `Center` is a layout widget that, well, centers stuff -- let's try it out!
 
 ```dart=28
+@override
 Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -280,6 +281,8 @@ However, there are more advanced attributes of `Column` and `Row` you can levera
 This alignment property allows you to specify how items within a `Column` or `Row` are distributed through the containing space. `MainAxisAlignment` determines the distribution along the main axis of the container. For `Column`, the main axis is the vertical axis. For `Row`, it's the horizontal axis. There are many options, and we'll introduce a few of them here.
 
 ###### `MainAxisAlignment.start`
+
+Here, the three `Image` Widgets in the column will begin at the top of the `Column`, and there will be no spacing between them. If there is more space in the parent Widget, the `Image` Widgets will not take up that remaining space. In the corresponding figure below, the `Column` is outlined in red.
 ```dart
 Column(
   mainAxisAlignment: MainAxisAlignment.start,
@@ -290,8 +293,6 @@ Column(
   ],
 );
 ```
-Here, the three `Image` Widgets in the column will begin at the top of the `Column`, and there will be no spacing between them. If there is more space in the parent Widget, the `Image` Widgets will not take up that remaining space. In the corresponding figure below, the `Column` is outlined in red:
-
 ![](https://i.imgur.com/QX9cBLgm.png)
 
 ###### `MainAxisAlignment.end`
@@ -300,6 +301,7 @@ This property functions identically to `MainAxisAlignment.start`, except that th
 ![](https://i.imgur.com/O1eeGZ7m.png)
 
 ###### `MainAxisAlignment.spaceEvenly`
+This property will distribute free space evenly between items, as well as before the first item and after the last item. 
 ```dart
 Column(
   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -310,8 +312,6 @@ Column(
   ],
 );
 ```
-This property will distribute free space evenly between items, as well as before the first item and after the last item. 
-
 ![](https://i.imgur.com/nldLTjcm.png)
 
 ###### `MainAxisAlignment.spaceBetween`
@@ -326,6 +326,7 @@ Like `MainAxisAlignment`, this alignment property allows you to specify how item
 Some options for `MainAxisAlignment` also apply for `CrossAxisAlignment`, but some do not, and there are also new options specific to `CrossAxisAlignment`.
 
 ###### `CrossAxisAlignment.start`
+If there is free space along the cross axis in the parent Widget, `start` will align items along the start of the cross axis.
 ```dart
 Column(
   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -337,11 +338,43 @@ Column(
   ],
 );
 ```
-If there is free space along the cross axis in the parent Widget, `start` will align items along the start of the cross axis.
-
 ![](https://i.imgur.com/80BXHVbm.png)
 
 `CrossAxisAlignment.end` works the same way, except items are aligned to the end of the cross axis (to the right in this example).
+
+###### `CrossAxisAlignment.center`
+This is the default value for `CrossAxisAlignment`.
+```dart
+Column(
+  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  crossAxisAlignment: CrossAxisAlignment.center,
+  children: [
+    Image.asset('images/pic1.jpg'),
+    Image.asset('images/pic2.jpg'),
+    Image.asset('images/pic3.jpg'),
+  ],
+);
+```
+![](https://i.imgur.com/nasEABlm.png)
+
+###### `CrossAxisAlignment.stretch`
+This property requires items to fill the cross axis, and it may stretch items out (such as images).
+```dart
+Column(
+  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  crossAxisAlignment: CrossAxisAlignment.center,
+  children: [
+    Image.asset('images/pic1.jpg'),
+    Image.asset('images/pic2.jpg'),
+    Image.asset('images/pic3.jpg'),
+  ],
+);
+```
+
+![](https://i.imgur.com/v2BwvU9m.png)
+
+##### Composing `Column` and `Row`
+Let's say you want 
 
 
 ---
