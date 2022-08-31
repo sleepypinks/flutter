@@ -44,7 +44,8 @@ class MyApp extends StatelessWidget {
 So even the root of our app is a `Widget`!
 
 Within the `MyApp` class, there is also a `build` method:
-```dart=9
+```dart=8
+@override
 Widget build(BuildContext context) {
     return MaterialApp(
         // Application name
@@ -75,7 +76,8 @@ Let's also change the title that appears in the brown `AppBar` from `"Studio - F
 Our app is a little boring right now... there's no content on the page! Let's add some.
 
 Scroll down to the `build` method of `MyHomePage` on line 23:
-```dart=28
+```dart=27
+@override
 Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -86,7 +88,8 @@ Widget build(BuildContext context) {
 }
 ```
 Let's add a `body` to our `Scaffold` so that we can put content into the page. We'll add a `Text` `Widget` as the only element in the body:
-```dart=28
+```dart=27
+@override
 Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -110,12 +113,12 @@ Well, we can use layout Widgets! `Center` is a layout widget that, well, centers
 
 ```dart=28
 Widget build(BuildContext context) {
-return Scaffold(
-    appBar: AppBar(
-      // The title text which will be shown on the action bar
-      title: Text(title),
-    ),
-    body: const Center(child: Text("Welcome to my bakery!")));
+    return Scaffold(
+        appBar: AppBar(
+          // The title text which will be shown on the action bar
+          title: Text(title),
+        ),
+        body: const Center(child: Text("Welcome to my bakery!")));
 }
 ```
 
@@ -194,17 +197,19 @@ class MenuItem extends StatelessWidget {
 }
 ```
 Finally, let's add the `build` method:
-```dart
+```dart 
+@override
 Widget build(BuildContext context) {
     return Column(
-        children: [Text(name), Text(description), Text(price), Text(imageUrl)]);
+        children: [Text(name), Text(description), Text(price), Image.network(imageUrl)]);
 }
 ```
-Here, we render a `Column` of `Text` Widgets, displaying each of the properties from our data. `Column`, like `Center`, is a layout Widget; however, unlike `Center` which takes in a single `child` Widget, `Column` takes in a list of `children` Widgets, which it will render in a vertical column.
+Here, we render a `Column` of 3 `Text` Widgets and 1 `Image` Widget, displaying each of the properties from our data. `Column`, like `Center`, is a layout Widget; however, unlike `Center` which takes in a single `child` Widget, `Column` takes in a list of `children` Widgets, which it will render in a vertical column.
 
 ### Rendering a list from data
 To make sure our `MenuItem` Widget works as expected, let's go to line 35 and remove the welcome text and replace it with a `ListView.builder` Widget. Like `Column`, `ListView.builder` is a layout widget that lays elements out in a vertical list. However, `ListView.builder` does not take `children`; instead, it accepts an `itemBuilder` function which returns a Widget. Let's take a look at this in the `MyHomePage` `build` method:
-```dart=29
+```dart=28
+@override
 Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -233,18 +238,18 @@ This isn't all that interesting (although those buns do look delicious), so let'
 Instead of hardcoding values for `itemCount` and `MenuItem`, we can index into our `menuItems` variable:
 ```dart=29
 Widget build(BuildContext context) {
-return Scaffold(
-    appBar: AppBar(
-      // The title text which will be shown on the action bar
-      title: Text(title),
-    ),
-    body: ListView.builder(
-        itemCount: menuItems.length,
-        itemBuilder: (context, index) => MenuItem(
-            name: menuItems[index]["name"] ?? "",
-            description: menuItems[index]["description"] ?? "",
-            imageUrl: menuItems[index]["imageUrl"] ?? "",
-            price: menuItems[index]["price"] ?? "")));
+    return Scaffold(
+        appBar: AppBar(
+          // The title text which will be shown on the action bar
+          title: Text(title),
+        ),
+        body: ListView.builder(
+            itemCount: menuItems.length,
+            itemBuilder: (context, index) => MenuItem(
+                name: menuItems[index]["name"] ?? "",
+                description: menuItems[index]["description"] ?? "",
+                imageUrl: menuItems[index]["imageUrl"] ?? "",
+                price: menuItems[index]["price"] ?? "")));
 }
 ```
 Now, we are pulling values from our data and rendering each of them using the `ListView.builder`! You should now see something like this and be able to scroll through these tantalizing treats:
@@ -252,3 +257,200 @@ Now, we are pulling values from our data and rendering each of them using the `L
 ![](https://i.imgur.com/5SNntoTl.png)
 
 ## Beautifying the `MenuItem`
+While our baked goods might look fantastic, the way we present them in our UI perhaps isn't quite as good. Let's fix that!
+
+This time, *it's up to you* to decide what exactly to do.
+
+To help you with some of the details, we list below many useful built-in Widgets and attributes you can use for layout and styling.
+
+If you think the design you have in mind requires other Widgets or attributes than the ones we list below, check out the [Flutter docs](https://docs.flutter.dev) and feel free to search online!
+
+### Useful layout Widgets and properties
+---
+#### `Column` and `Row`
+We've seen `Column` before -- we use it to layout the menu item properties within our `MenuItem` Widget.
+
+`Column` expects a `children` list of Widgets, and by default it will render those in a vertical list, with earlier Widgets in the list on top.
+
+`Row` is exactly like `Column` except that its main axis -- the axis on which it lays out items -- is the horizontal axis rather than the vertical one, with earlier Widgets in the list on the left.
+
+However, there are more advanced attributes of `Column` and `Row` you can leverage to adjust spacing, constrain item size, and handle overflow. Let's take a look at some of these.
+
+##### `MainAxisAlignment`
+This alignment property allows you to specify how items within a `Column` or `Row` are distributed through the containing space. `MainAxisAlignment` determines the distribution along the main axis of the container. For `Column`, the main axis is the vertical axis. For `Row`, it's the horizontal axis. There are many options, and we'll introduce a few of them here.
+
+###### `MainAxisAlignment.start`
+```dart
+Column(
+  mainAxisAlignment: MainAxisAlignment.start,
+  children: [
+    Image.asset('images/pic1.jpg'),
+    Image.asset('images/pic2.jpg'),
+    Image.asset('images/pic3.jpg'),
+  ],
+);
+```
+Here, the three `Image` Widgets in the column will begin at the top of the `Column`, and there will be no spacing between them. If there is more space in the parent Widget, the `Image` Widgets will not take up that remaining space. In the corresponding figure below, the `Column` is outlined in red:
+
+![](https://i.imgur.com/QX9cBLgm.png)
+
+###### `MainAxisAlignment.end`
+This property functions identically to `MainAxisAlignment.start`, except that the items are grouped towards the bottom of the `Column`:
+
+![](https://i.imgur.com/O1eeGZ7m.png)
+
+###### `MainAxisAlignment.spaceEvenly`
+```dart
+Column(
+  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  children: [
+    Image.asset('images/pic1.jpg'),
+    Image.asset('images/pic2.jpg'),
+    Image.asset('images/pic3.jpg'),
+  ],
+);
+```
+This property will distribute free space evenly between items, as well as before the first item and after the last item. 
+
+![](https://i.imgur.com/nldLTjcm.png)
+
+###### `MainAxisAlignment.spaceBetween`
+This property functions like `spaceEvenly`, except it will not add space before the first item and after the last item.
+
+![](https://i.imgur.com/W8QKMWDm.png)
+
+To see all `MainAxisAlignment` options, check out the docs: https://api.flutter.dev/flutter/rendering/MainAxisAlignment.html
+
+##### `CrossAxisAlignment`
+Like `MainAxisAlignment`, this alignment property allows you to specify how items within a `Column` or `Row` are distributed through the containing space. `CrossAxisAlignment` determines the distribution along the cross axis of the container. For `Column`, the cross axis is the horizontal axis. For `Row`, it's the vertical axis.
+Some options for `MainAxisAlignment` also apply for `CrossAxisAlignment`, but some do not, and there are also new options specific to `CrossAxisAlignment`.
+
+###### `CrossAxisAlignment.start`
+```dart
+Column(
+  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Image.asset('images/pic1.jpg'),
+    Image.asset('images/pic2.jpg'),
+    Image.asset('images/pic3.jpg'),
+  ],
+);
+```
+If there is free space along the cross axis in the parent Widget, `start` will align items along the start of the cross axis.
+
+![](https://i.imgur.com/80BXHVbm.png)
+
+`CrossAxisAlignment.end` works the same way, except items are aligned to the end of the cross axis (to the right in this example).
+
+
+---
+
+
+
+### Useful Styling Widgets and Properties
+---
+#### `BoxDecoration`
+`BoxDecoration` is an especially powerful styling widget, and is typically used on the `decoration` attribute of a container:
+```dart
+...
+body: Container(
+    decoration: BoxDecoration(
+        ...
+    )
+),
+```
+`BoxDecoration` has properties in and of itself, and manipulating them allows you to add unique styling to the underlying container which it is bound to.
+
+##### `image`
+
+```dart
+image: DecorationImage(
+    image: NetworkImage(imageUrl), fit: BoxFit.cover),
+```
+
+![](https://i.imgur.com/X4X3o9Am.png)
+
+
+##### `border`
+
+```dart
+border: Border.all(color: Colors.grey, width: 3),
+```
+
+![](https://i.imgur.com/s3u6V9ym.png)
+
+##### `borderRadius`
+
+```dart
+borderRadius: BorderRadius.circular(15.0),
+```
+![](https://i.imgur.com/MZEjxAwm.png)
+
+##### `boxShadow`
+
+```dart
+boxShadow: [
+               BoxShadow(
+                 offset: const Offset(1, 3),
+                 blurRadius: 7,
+                 color: Colors.black.withOpacity(0.5),
+               ),
+             ],
+```
+
+![](https://i.imgur.com/taFmP7wm.png)
+
+##### `color`
+
+An image/color cannot already be assigned to the BoxDecoration.
+
+```dart
+color: const Color(0xffe0a4d9),
+```
+
+![](https://i.imgur.com/sJzuvrFm.png)
+
+##### `gradient`
+
+An image/color cannot already be assigned to the BoxDecoration.
+
+```dart
+gradient: LinearGradient(
+               begin: Alignment.topRight,
+               end: Alignment.bottomLeft,
+               colors: [
+                 Colors.orange,
+                 Colors.green,
+               ],
+             ),
+```
+
+![](https://i.imgur.com/qHRS8xqm.png)
+---
+
+#### `Text`
+
+We have used `Text` before for rendering out our price, description, and name, but there is more we can do with this Widget to manipulate how it looks, namely with the `style` property.
+
+```dart
+Text(name,
+  style: const TextStyle(
+    color: Colors.white,
+    fontWeight: FontWeight.bold,
+    fontStyle: FontStyle.italic,
+    fontSize: 24)),
+Text(price,
+  style: const TextStyle(
+      color: Colors.white,
+      fontWeight: FontWeight.bold,
+      fontStyle: FontStyle.italic,
+      fontSize: 24))
+```
+
+![](https://i.imgur.com/knjxWmXm.png)
+
+Here you can see that we were able to add the `TextStyle` Widget to the `style` property of the text, giving the `Text` a different `color`, `fontWeight`, `fontStyle`, and `fontSize`. By placing these two `Text` Widgets as the children of a `Column` placed in a `Center`, we were able to achieve this layout.
+
+There is much more you can do with `Text`, `BoxDecoration`, and really any other Widget, so we encourage you to experiment and research on your own!
+
