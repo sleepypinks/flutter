@@ -4,16 +4,16 @@
 Today, you will be introduced to mobile app design through building a simple bakery list app! We will leverage a powerful cross-platform framework called Flutter to build an app that can run on the web, your phone, or a native program on Windows, macOS, or Linux.
 
 ### Introduction Activity
-Discuss with your group:
+Consider these questions before beginning:
 - As a UX designer, what differences have you seen in mobile app designs versus web designs?
 - What are some design aspects you would consider before designing a mobile app for a client?
 
 ## Environment Setup
-We will be using flutlab.io, an online Flutter IDE. Using this online environment should help alleviate common issues students may encounter while installing a Flutter development environment locally.
+We will be using flutlab.io, an online Flutter IDE. Using an online environment helps avoid any issues that you may encounter when installing a Flutter development environment locally.
 
 * Visit flutlab.io, and sign in with your Brown Google account.
-* Once you sign in, you’ll be taken to your personal dashboard.
-* On the right sidebar, click the *Clone Project from VCS* button
+* Once you sign in, you’ll be taken to your personal dashboard. If a tutorial pops up, keep clicking the right arrow until you are able to press the "Start Coding" button
+* On the right sidebar, click the *Clone Project from VCS* button. If you do not see this button, make sure that your window is full-screened for it to appear.
 * In the popup window, click the *Public repo* button on the left
 * For *URL to repo*, paste `https://github.com/dylanhu7/studio-flutter.git`. The *Project name* should be automatically set to *studio-flutter*.
 * Click *Clone*
@@ -70,7 +70,7 @@ Change the `primarySwatch` color on line 16 from `Colors.blue` to `Colors.brown`
 
 Notice that just like React, you don't have to fully rebuild or restart your app to see changes take effect!
 
-Let's also change the title that appears in the brown `AppBar` from `"Studio - Flutter"` to `"Bakery Menu"`.
+Let's also change the title that appears in the brown `AppBar` from `"Studio - Flutter"` to `"My Bakery"`. This can be done by changing `home: const MyHomePage(title: 'Studio - Flutter'),` on line 19 to `home: const MyHomePage(title: 'My Bakery'),`
 
 #### Adding content to the page
 Our app is a little boring right now... there's no content on the page! Let's add some.
@@ -155,6 +155,8 @@ final menuItems = [
 ```
 Here, we have provided you with some sample data that you'll generate bakery menu list items from.
 
+Notice that we store the prices as **strings**, **not doubles!** This will make it easier for your rendering purposes.
+
 We've already imported this data into `main.dart` for you with line 2:
 ```dart=2
 import 'menu_data.dart';
@@ -177,7 +179,7 @@ Now, let's add fields for each of the properties the menu item data has:
 class MenuItem extends StatelessWidget {
     final String name;
     final String description;
-    final double price;
+    final String price;
     final String imageUrl;
 }
 ```
@@ -186,7 +188,7 @@ We can now add a constructor for `MenuItem` that has parameters matching these f
 class MenuItem extends StatelessWidget {
   final String name;
   final String description;
-  final double price;
+  final String price;
   final String imageUrl;
   const MenuItem(
       {Key? key,
@@ -197,7 +199,7 @@ class MenuItem extends StatelessWidget {
       : super(key: key);
 }
 ```
-Finally, let's add the `build` method:
+Finally, let's add the `build` method, making sure to mirror the structure in the previous Widget:
 ```dart 
 @override
 Widget build(BuildContext context) {
@@ -260,15 +262,23 @@ Now, we are pulling values from our data and rendering each of them using the `L
 ## Beautifying the `MenuItem`
 While our baked goods might look fantastic, the way we present them in our UI perhaps isn't quite as good. Let's fix that!
 
-This time, *it's up to you* to decide what exactly to do.
+This time, *it's up to you* to decide what exactly to do. As the final step of this studio, take some time to use what you have learned to prettify `MenuItem` as well as the UI in general.
 
-To help you with some of the details, we list below many useful built-in Widgets and attributes you can use for layout and styling.
+To help you with some of the details, we list below in [Addendum 1](#Addendum-1:-Useful-layout-widgets-and-properties) and [Addendum 2](#Addendum-2:-Useful-styling-widgets-and-properties) many useful built-in Widgets and attributes you can use for layout and styling.
 
 If you think the design you have in mind requires other Widgets or attributes than the ones we list below, check out the [Flutter docs](https://docs.flutter.dev) and feel free to search online!
 
-### Useful layout Widgets and properties
+## Hand In
+
+Once you are done with ✨beautifying✨ the `MenuItem`, add a screenshot on to the [sync slides](https://docs.google.com/presentation/d/1r9d-8MxLDKNY9N5EE7Xo5wP_DfB2V3X4rL7TkSdcaTA/edit?usp=sharing) of your final app that displays your list of baked goods.
+
+***Please don't forget*** to write your cs login next to the screenshot, as we will use it to check you off.
+
+Deadline for submission is at **12pm ET** on **Monday 28th November 2022**.
+
+## Addendum 1: Useful layout widgets and properties
 ---
-#### `Column` and `Row`
+### `Column` and `Row`
 We've seen `Column` before -- we use it to layout the menu item properties within our `MenuItem` Widget.
 
 `Column` expects a `children` list of Widgets, and by default it will render those in a vertical list, with earlier Widgets in the list on top.
@@ -277,10 +287,10 @@ We've seen `Column` before -- we use it to layout the menu item properties withi
 
 However, there are more advanced attributes of `Column` and `Row` you can leverage to adjust spacing, constrain item size, and handle overflow. Let's take a look at some of these.
 
-##### `MainAxisAlignment`
+#### `MainAxisAlignment`
 This alignment property allows you to specify how items within a `Column` or `Row` are distributed through the containing space. `MainAxisAlignment` determines the distribution along the main axis of the container. For `Column`, the main axis is the vertical axis. For `Row`, it's the horizontal axis. There are many options, and we'll introduce a few of them here.
 
-###### `MainAxisAlignment.start`
+##### `MainAxisAlignment.start`
 
 Here, the three `Image` Widgets in the column will begin at the top of the `Column`, and there will be no spacing between them. If there is more space in the parent Widget, the `Image` Widgets will not take up that remaining space. In the corresponding figure below, the `Column` is outlined in red.
 ```dart
@@ -295,12 +305,12 @@ Column(
 ```
 ![](https://i.imgur.com/QX9cBLgm.png)
 
-###### `MainAxisAlignment.end`
+##### `MainAxisAlignment.end`
 This property functions identically to `MainAxisAlignment.start`, except that the items are grouped towards the bottom of the `Column`:
 
 ![](https://i.imgur.com/O1eeGZ7m.png)
 
-###### `MainAxisAlignment.spaceEvenly`
+##### `MainAxisAlignment.spaceEvenly`
 This property will distribute free space evenly between items, as well as before the first item and after the last item. 
 ```dart
 Column(
@@ -314,18 +324,18 @@ Column(
 ```
 ![](https://i.imgur.com/nldLTjcm.png)
 
-###### `MainAxisAlignment.spaceBetween`
+##### `MainAxisAlignment.spaceBetween`
 This property functions like `spaceEvenly`, except it will not add space before the first item and after the last item.
 
 ![](https://i.imgur.com/W8QKMWDm.png)
 
 To see all `MainAxisAlignment` options, check out the docs: https://api.flutter.dev/flutter/rendering/MainAxisAlignment.html
 
-##### `CrossAxisAlignment`
+#### `CrossAxisAlignment`
 Like `MainAxisAlignment`, this alignment property allows you to specify how items within a `Column` or `Row` are distributed through the containing space. `CrossAxisAlignment` determines the distribution along the cross axis of the container. For `Column`, the cross axis is the horizontal axis. For `Row`, it's the vertical axis.
 Some options for `MainAxisAlignment` also apply for `CrossAxisAlignment`, but some do not, and there are also new options specific to `CrossAxisAlignment`.
 
-###### `CrossAxisAlignment.start`
+##### `CrossAxisAlignment.start`
 If there is free space along the cross axis in the parent Widget, `start` will align items along the start of the cross axis.
 ```dart
 Column(
@@ -342,7 +352,7 @@ Column(
 
 `CrossAxisAlignment.end` works the same way, except items are aligned to the end of the cross axis (to the right in this example).
 
-###### `CrossAxisAlignment.center`
+##### `CrossAxisAlignment.center`
 This is the default value for `CrossAxisAlignment`.
 ```dart
 Column(
@@ -357,7 +367,7 @@ Column(
 ```
 ![](https://i.imgur.com/nasEABlm.png)
 
-###### `CrossAxisAlignment.stretch`
+##### `CrossAxisAlignment.stretch`
 This property requires items to fill the cross axis, and it may stretch items out (such as images).
 ```dart
 Column(
@@ -373,17 +383,17 @@ Column(
 
 ![](https://i.imgur.com/v2BwvU9m.png)
 
-##### Composing `Column` and `Row`
-Let's say you want 
+<!-- ##### Composing `Column` and `Row`
+Let's say you want  -->
 
 
+<!-- --- -->
+
+
+
+## Addendum 2: Useful styling widgets and properties
 ---
-
-
-
-### Useful Styling Widgets and Properties
----
-#### `BoxDecoration`
+### `BoxDecoration`
 `BoxDecoration` is an especially powerful styling widget, and is typically used on the `decoration` attribute of a container:
 ```dart
 ...
@@ -393,9 +403,21 @@ body: Container(
     )
 ),
 ```
+For example, if you wanted to add a BoxDecoration to your MenuItem it would be added to the build method in the structure of:
+
+```dart
+@override
+Widget build(BuildContext context) {
+return Scaffold(
+        body: Container(
+            decoration: BoxDecoration(...),
+            child: Center(...)
+            )
+        )
+```
 `BoxDecoration` has properties in and of itself, and manipulating them allows you to add unique styling to the underlying container which it is bound to.
 
-##### `image`
+#### `image`
 
 ```dart
 image: DecorationImage(
@@ -405,7 +427,7 @@ image: DecorationImage(
 ![](https://i.imgur.com/X4X3o9Am.png)
 
 
-##### `border`
+#### `border`
 
 ```dart
 border: Border.all(color: Colors.grey, width: 3),
@@ -413,14 +435,14 @@ border: Border.all(color: Colors.grey, width: 3),
 
 ![](https://i.imgur.com/s3u6V9ym.png)
 
-##### `borderRadius`
+#### `borderRadius`
 
 ```dart
 borderRadius: BorderRadius.circular(15.0),
 ```
 ![](https://i.imgur.com/MZEjxAwm.png)
 
-##### `boxShadow`
+#### `boxShadow`
 
 ```dart
 boxShadow: [
@@ -434,7 +456,7 @@ boxShadow: [
 
 ![](https://i.imgur.com/taFmP7wm.png)
 
-##### `color`
+#### `color`
 
 An image/color cannot already be assigned to the BoxDecoration.
 
@@ -444,7 +466,7 @@ color: const Color(0xffe0a4d9),
 
 ![](https://i.imgur.com/sJzuvrFm.png)
 
-##### `gradient`
+#### `gradient`
 
 An image/color cannot already be assigned to the BoxDecoration.
 
@@ -460,9 +482,10 @@ gradient: LinearGradient(
 ```
 
 ![](https://i.imgur.com/qHRS8xqm.png)
+
 ---
 
-#### `Text`
+### `Text`
 
 We have used `Text` before for rendering out our price, description, and name, but there is more we can do with this Widget to manipulate how it looks, namely with the `style` property.
 
