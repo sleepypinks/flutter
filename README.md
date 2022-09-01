@@ -8,6 +8,8 @@ Consider these questions before beginning:
 - As a UX designer, what differences have you seen in mobile app designs versus web designs?
 - What are some design aspects you would consider before designing a mobile app for a client?
 
+<br />
+
 ## Environment Setup
 We will be using flutlab.io, an online Flutter IDE. Using an online environment helps avoid any issues that you may encounter when installing a Flutter development environment locally.
 
@@ -25,8 +27,10 @@ You should now see something like this:
 
 Hover over the blue *Build* button at the top left -- it looks like a play button. Your Flutter app will now be built so that you can run it in an emulator and see your changes take effect in real time. The build process may take a minute or two. Once it finishes, you should see something like this:
 
+
 ![](https://i.imgur.com/tmZMPWYl.png)
 
+<br />
 
 ## Flutter Basics
 ### main.dart
@@ -128,6 +132,8 @@ And once you hot reload, you should see something like this:
 ![](https://i.imgur.com/gaNZ244l.png)
 
 Perfect!
+
+<br />
 
 ## Curating our bakery menu
 We've now greeted our user as they enter our bakery, but they probably won't be too happy once they see we don't have much to offer! Let's fix that :)
@@ -268,6 +274,8 @@ To help you with some of the details, we list below in [Addendum 1](#Addendum-1:
 
 If you think the design you have in mind requires other Widgets or attributes than the ones we list below, check out the [Flutter docs](https://docs.flutter.dev) and feel free to search online!
 
+<br />
+
 ## Hand In
 
 Once you are done with ✨beautifying✨ the `MenuItem`, add a screenshot on to the [sync slides](https://docs.google.com/presentation/d/1r9d-8MxLDKNY9N5EE7Xo5wP_DfB2V3X4rL7TkSdcaTA/edit?usp=sharing) of your final app that displays your list of baked goods.
@@ -275,6 +283,8 @@ Once you are done with ✨beautifying✨ the `MenuItem`, add a screenshot on to 
 ***Please don't forget*** to write your cs login next to the screenshot, as we will use it to check you off.
 
 Deadline for submission is at **12pm ET** on **Monday 28th November 2022**.
+
+<br /><br />
 
 ## Addendum 1: Useful layout widgets and properties
 ---
@@ -510,3 +520,6 @@ Here you can see that we were able to add the `TextStyle` Widget to the `style` 
 
 There is much more you can do with `Text`, `BoxDecoration`, and really any other Widget, so we encourage you to experiment and research on your own!
 
+<br /> <br />
+## Credits
+Made with ♥ by Dylan Hu, Lauren Choi, Miku Suga, Nick Vadasz (2022 Fall TAs).
