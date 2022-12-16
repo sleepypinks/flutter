@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'menu_data.dart';
 import 'package:http/http.dart' as http;
+
 import 'dart:convert';
 
 void main() => runApp(MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       // Application theme data, you can set the colors for the application as
       // you want
       theme: ThemeData(
-        primarySwatch: Colors.brown,
+        primarySwatch: Colors.purple,
       ),
       // A widget which will be started on application startup
       home: MyHomePage(title: 'Space Space for Doggos ❤️'),
@@ -78,16 +78,12 @@ class CreateCatButton extends State<CatButton> {
 
   @override
   Widget build(BuildContext context) {
-    final ButtonStyle style =
-        ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 22));
-
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           const SizedBox(height: 50),
           ElevatedButton(
-            style: style,
             onPressed: () {
               getCat(http.Client());
             },
@@ -99,7 +95,8 @@ class CreateCatButton extends State<CatButton> {
     );
   }
 
-//I tried so much to run this for cats but my request kept throwing an error! :()
+//I tried so much to run this for cats but my request kept throwing an error! :(
+//So, I watched did the studio with people from the studio!
   void getCat(http.Client client) async {
     final response =
         await client.get(Uri.parse('https://dog.ceo/api/breeds/image/random'));
